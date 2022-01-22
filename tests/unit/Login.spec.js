@@ -9,5 +9,11 @@ describe("Login.vue", () => {
     expect(
       screen.getByText("Log in to your Note Taken Application")
     ).toBeInTheDocument();
+    // expect(
+    //   screen.getByLabelText("Email")
+    // ).toBeInTheDocument();
+    // expect(
+    //   screen.getByLabelText("Password")
+    // ).toBeInTheDocument();
   });
 });
