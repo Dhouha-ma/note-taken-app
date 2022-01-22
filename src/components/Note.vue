@@ -80,36 +80,45 @@ export default {
   },
   methods: {
     addNote() {
-      document.getElementById("welcomeDiv").style.display = "block";
-      // axios
-      //   .post("https://beta.mailbutler.io/api/v2/notes", {
-      //     headers: {
-      //       Authorization: "Bearer " + this.token,
-      //     },
-      //     body: JSON.stringify({
-      //       context: {
-      //         message_id: "1",
-      //         contact_id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      //       },
-      //       team_id: "Unknown Type: string,null",
-      //       meta: {
-      //         to: [
-      //           {
-      //             contact_id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      //           },
-      //         ],
-      //         sender: {
-      //           contact_id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      //         },
-      //       },
-      //     }),
-      //   })
-      //   .then((response) => {
-      //     console.log(response);
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //   });
+      //document.getElementById("welcomeDiv").style.display = "block";
+      const headers = {
+        Authorization: "Bearer " + this.token,
+      };
+      axios
+        .post(
+          "https://beta.mailbutler.io/api/v2/notes",
+          {
+            context: {
+              message_id: "1",
+              gmail_message_id: "string",
+              gmail_draft_id: "string",
+              mailbutler_message_id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+              contact_id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            },
+            text: "new note 5",
+            team_id: "Unknown Type: string,null",
+            meta: {
+              to: [
+                {
+                  contact_id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                  name: "string",
+                },
+              ],
+              subject: "note title 3",
+              sender: {
+                contact_id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                name: "string",
+              },
+            },
+          },
+          { headers }
+        )
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
     editNote() {},
     deleteNote() {},
