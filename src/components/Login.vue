@@ -1,10 +1,10 @@
 <template>
   <div
-    class="container mt-10 max-w-md mx-auto xl:max-w-3xl h-full flex bg-white rounded-lg shadow overflow-hidden"
+    class="container mt-10 max-w-md mx-auto h-full flex bg-white rounded-lg shadow overflow-hidden"
   >
-    <div class="w-full xl:w-1/2 p-8">
+    <div class="w-full  p-8">
       <form method="post" action="#" onsubmit="return false">
-        <h1 class="text-2xl font-bold">Log in to your Note-Taken Application</h1>
+        <h1 class="text-2xl font-bold text-center">Log in to your Note Taken Application</h1>
         <div class="mb-4 mt-6">
           <label class="block text-gray-700 text-sm font-semibold mb-2" for="email">Email</label>
           <input
@@ -37,6 +37,7 @@
 
 <script>
 import axios from "axios";
+
 export default {
   name: "Login",
   data() {
@@ -54,6 +55,8 @@ export default {
         })
         .then(response => {
           if (response.status && response.data.token) {
+            console.log(response.data.token)
+            localStorage.setItem("token", response.data.token);
             this.$router.push({ name: "Note" });
           }
         })
