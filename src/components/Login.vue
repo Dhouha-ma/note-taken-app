@@ -2,11 +2,17 @@
   <div
     class="container mt-10 max-w-md mx-auto h-full flex bg-white rounded-lg shadow overflow-hidden"
   >
-    <div class="w-full  p-8">
+    <div class="w-full p-8">
       <form method="post" action="#" onsubmit="return false">
-        <h1 class="text-2xl font-bold text-center">Log in to your Note Taken Application</h1>
+        <h1 class="text-2xl font-bold text-center">
+          Log in to your Note Taken Application
+        </h1>
         <div class="mb-4 mt-6">
-          <label class="block text-gray-700 text-sm font-semibold mb-2" for="email">Email</label>
+          <label
+            class="block text-gray-700 text-sm font-semibold mb-2"
+            for="email"
+            >Email</label
+          >
           <input
             class="text-sm appearance-none rounded w-full py-2 px-3 text-gray-700 bg-gray-200 leading-tight focus:outline-none focus:shadow-outline h-10"
             v-model="email"
@@ -15,7 +21,11 @@
           />
         </div>
         <div class="mb-6 mt-6">
-          <label class="block text-gray-700 text-sm font-semibold mb-2" for="password">Password</label>
+          <label
+            class="block text-gray-700 text-sm font-semibold mb-2"
+            for="password"
+            >Password</label
+          >
           <input
             class="text-sm bg-gray-200 appearance-none rounded w-full py-2 px-3 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline h-10"
             v-model="password"
@@ -28,7 +38,9 @@
             class="w-full bg-gray-800 hover:bg-grey-900 text-white text-sm py-2 px-4 font-semibold rounded focus:outline-none focus:shadow-outline h-10"
             type="button"
             v-on:click="login"
-          >Sign in</button>
+          >
+            Sign in
+          </button>
         </div>
       </form>
     </div>
@@ -43,7 +55,7 @@ export default {
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
     };
   },
   methods: {
@@ -51,20 +63,19 @@ export default {
       axios
         .post("https://beta.mailbutler.io/api/v2/users/login", {
           email: this.email,
-          password: this.password
+          password: this.password,
         })
-        .then(response => {
+        .then((response) => {
           if (response.status && response.data.token) {
-            console.log(response.data.token)
             localStorage.setItem("token", response.data.token);
             this.$router.push({ name: "Note" });
           }
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
-    }
-  }
+    },
+  },
 };
 </script>
 

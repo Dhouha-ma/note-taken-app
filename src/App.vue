@@ -9,10 +9,7 @@ import "./assets/tailwind.css";
 
 export default {
   name: "App",
-  components: {
-    // Note,
-    // Login
-  }
+  components: {},
 };
 </script>
 
