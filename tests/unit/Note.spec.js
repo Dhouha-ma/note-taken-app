@@ -12,8 +12,8 @@ describe("Note.vue", () => {
 
   it("should add new note after clicking on add button", async () => {
     render(Note);
-    userEvent.type(screen.getByPlaceholderText("Your new note"), "test note");
-    userEvent.click(screen.getByTitle("Add"));
+    userEvent.type(screen.getByRole("textbox", {name: ""}), "test note");
+    userEvent.click(screen.getByRole("button", {name: "Add"}));
     // expect(await screen.findByText('test note')).toBeInTheDocument();
     // expect(await screen.findByTitle("Save")).toBeInTheDocument();
     // expect(await screen.findByTitle("Delete")).toBeInTheDocument();
