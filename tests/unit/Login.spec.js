@@ -4,16 +4,17 @@ import "@testing-library/jest-dom";
 
 describe("Login.vue", () => {
 
-  it("should display login form", () => {
+  it("should display login form and sign in button", () => {
     render(Login);
     expect(
       screen.getByText("Log in to your Note Taken Application")
     ).toBeInTheDocument();
-    // expect(
-    //   screen.getByLabelText("Email")
-    // ).toBeInTheDocument();
-    // expect(
-    //   screen.getByLabelText("Password")
-    // ).toBeInTheDocument();
+    expect(
+      screen.getByPlaceholderText('Your email address')
+    ).toBeInTheDocument();
+    expect(
+      screen.getByPlaceholderText('Your password')
+    ).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Sign in/i })).toBeInTheDocument()
   });
 });
