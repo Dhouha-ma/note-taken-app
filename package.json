@@ -21,7 +21,9 @@
     "vue-router": "^3.5.3"
   },
   "devDependencies": {
+    "@testing-library/dom": "^8.11.2",
     "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/user-event": "^13.5.0",
     "@testing-library/vue": "^5.8.2",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",

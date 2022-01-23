@@ -24,6 +24,7 @@
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
+              <title>Add</title>
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -55,6 +56,7 @@
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
+              <title>Save</title>
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -75,6 +77,7 @@
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
+              <title>Delete</title>
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"

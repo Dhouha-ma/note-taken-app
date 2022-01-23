@@ -4,8 +4,8 @@
   >
     <div class="w-full p-8">
       <form method="post" action="#" onsubmit="return false">
-        <h1 class="text-2xl font-bold text-center">
-          Log in to your Note Taken Application
+        <h1 class="text-2xl font-bold text-center mb-20">
+          Login To Your Notes Application
         </h1>
         <div class="mb-4 mt-6">
           <label
