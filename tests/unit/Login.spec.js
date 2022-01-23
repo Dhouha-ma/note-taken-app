@@ -17,4 +17,13 @@ describe("Login.vue", () => {
     ).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /Sign in/i })).toBeInTheDocument()
   });
+
+  it("should redirect to notes page when click on login", () => {
+    // render(Login);
+    
+    // fireEvent.click(screen.getByRole('button'))
+    // expect(
+    //   screen.getByText("Note")
+    // ).toBeInTheDocument();
+  });
 });
