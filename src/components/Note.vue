@@ -71,7 +71,11 @@ export default {
     };
   },
   mounted() {
-    axios
+    this.getNotes();
+  },
+  methods: {
+    getNotes(){
+      axios
       .get("https://beta.mailbutler.io/api/v2/notes", {
         headers: {
           Authorization: "Bearer " + this.token,
@@ -84,8 +88,7 @@ export default {
         console.log(error);
         this.$router.push({ name: "Login" });
       });
-  },
-  methods: {
+    },
     addNote() {
       const headers = {
         Authorization: "Bearer " + this.token,
@@ -102,6 +105,8 @@ export default {
           { headers }
         )
         .then((response) => {
+          this.getNotes();
+          this.notetext = "";
           console.log(response);
         })
         .catch((error) => {
@@ -139,7 +144,7 @@ export default {
           headers,
         })
         .then((response) => {
-          this.notes.splice(noteId, 1);
+          this.getNotes();
           console.log("Note deleted", response);
         })
         .catch((error) => {
