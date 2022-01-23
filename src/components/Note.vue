@@ -7,29 +7,28 @@
     >
       Add Note
     </button>
-        <button
+    <div v-for="note in notes" v-bind:key="note.id">
+      <div>
+        <textarea v-model="note.text"
+        class="w-64 h-64 flex flex-col justify-between bg-red-100 rounded-lg mb-6 py-5 px-4"
+      >
+      </textarea>
+    <button
       class="bg-gray-800 mb-5 mr-5 hover:bg-grey-900 text-white text-sm py-2 px-4 font-semibold rounded focus:outline-none focus:shadow-outline h-10"
       type="button"
-      v-on:click="editNote"
+      v-on:click="SaveNote(note.id, note.text)"
     >
-      Edit Note
+      Save Note
     </button>
-        <button
+    <button
       class="bg-gray-800 mb-5 hover:bg-grey-900 text-white text-sm py-2 px-4 font-semibold rounded focus:outline-none focus:shadow-outline h-10"
       type="button"
-      v-on:click="deleteNote"
+      v-on:click="deleteNote(note.id)"
     >
       Delete Note
     </button>
-    <!-- <div id="welcomeDiv" style="display: none">
-      <textarea
-        class="w-64 h-64 flex flex-col justify-between bg-red-100 rounded-lg mb-6 py-5 px-4"
-      >
-      you will learn how to make a website. They offer free tutorials in all web development technologies.
-      </textarea>
-    </div> -->
-    <div v-for="note in notes" v-bind:key="note.id">
-      <div
+      </div>
+      <!-- <div
         class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-5"
       >
         <div
@@ -61,7 +60,7 @@
             </button>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -75,6 +74,9 @@ export default {
     return {
       notes: [],
       token: localStorage.getItem("token"),
+      title: "",
+      editing: "",
+      text: "",
     };
   },
   mounted() {
@@ -133,13 +135,13 @@ export default {
           console.log(error);
         });
     },
-    editNote() {
+    SaveNote(noteId, noteText) {
       const headers = {
         Authorization: "Bearer " + this.token,
       };
       axios
         .put(
-          "https://beta.mailbutler.io/api/v2/notes/2c1d7205-6cda-47ca-bb74-7594b262dfe9",
+          `https://beta.mailbutler.io/api/v2/notes/` + noteId,
           {
             context: {
               message_id: "1",
@@ -148,7 +150,7 @@ export default {
               mailbutler_message_id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
               contact_id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
             },
-            text: "new note updated",
+            text: noteText,
             team_id: "Unknown Type: string,null",
             meta: {
               to: [
@@ -173,13 +175,13 @@ export default {
           console.log(error);
         });
     },
-    deleteNote() {
+    deleteNote(noteId) {
       const headers = {
         Authorization: "Bearer " + this.token,
       };
       axios
         .delete(
-          "https://beta.mailbutler.io/api/v2/notes/36e64d71-7a63-4988-9446-d1414eb17e1e",
+          `https://beta.mailbutler.io/api/v2/notes/` + noteId,
           { headers }
         )
         .then((response) => {
@@ -188,7 +190,7 @@ export default {
         .catch((error) => {
           console.log(error);
         });
-    }
+    },
   },
 };
 </script>
