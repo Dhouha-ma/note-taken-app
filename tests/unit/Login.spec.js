@@ -2,6 +2,9 @@ import { render, screen } from "@testing-library/vue";
 import userEvent from "@testing-library/user-event";
 import Login from "@/components/Login.vue";
 import "@testing-library/jest-dom";
+import axios from 'axios'
+
+jest.spyOn(axios, 'post').mockResolvedValue(true);
 
 describe("Login.vue", () => {
   it("should display login form and sign in button", () => {
@@ -18,10 +21,10 @@ describe("Login.vue", () => {
     ).toBeInTheDocument();
   });
 
-  it("should redirect to notes page when click on login", async () => {
+  it("should make API call when click on Sign in button", async () => {
     render(Login);
-    userEvent.click(screen.getByRole("button", { name: /Sign in/i }));
-    //expect(await screen.findByPlaceholderText("Your new note")).toBeInTheDocument();
-    //expect(await screen.findByTitle("Add")).toBeInTheDocument();
+    
+    await userEvent.click(screen.getByRole("button", { name: /Sign in/i }));
+    expect(axios.post).toHaveBeenCalled()
   });
 });
